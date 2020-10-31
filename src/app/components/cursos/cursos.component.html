@@ -1,0 +1,14 @@
+<div class="cursos" *ngIf="cursos.length > 0;else noData">
+    <mat-list role="list" *ngFor="let curso of cursos">
+        <mat-list-item role="listitem" (click)="abrirCurso(curso.id)">
+            <p>
+                <b>Curso: </b> {{curso.nombre}} <b>Duraci&oacute;n: </b> {{ curso.duracion }} horas <br>
+                <b>Profesor: </b> {{curso.nombre_profesor}} <br>
+            </p>
+        </mat-list-item>
+    </mat-list>
+</div>
+<ng-template #noData>
+    <mat-spinner *ngIf="loading"></mat-spinner>
+    <h2 *ngIf="!loading">No hay datos para mostrar</h2>
+</ng-template>

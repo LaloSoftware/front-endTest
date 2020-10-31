@@ -1,0 +1,61 @@
+<div class="content">
+    <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre del curso</mat-label>
+          <input name="nombre" matInput autocomplete="off" [(ngModel)]="curso.nombre" required>
+        </mat-form-field>
+        <br>
+        <p class="error" *ngIf="form.submitted && form.controls['nombre'].invalid">
+            Este campo es requerido
+        </p>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Duraci&oacute;n</mat-label>
+            <input name="duracion" 
+                    matInput type="number" 
+                    [(ngModel)]="curso.duracion" 
+                    required 
+                    min="0"
+                    max="100"> 
+        </mat-form-field>
+        <br>
+        <p class="error" *ngIf="form.submitted && form.controls['duracion'].invalid">
+            Este campo es requerido y solo admite valores entre 0 y 100
+        </p>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Calificaci&oacute;n</mat-label>
+            <input name="calificacion" 
+                    matInput 
+                    type="number" 
+                    [(ngModel)]="curso.calificacion" 
+                    required 
+                    min="0"
+                    max="10"> 
+        </mat-form-field>
+        <br>
+        <p class="error" *ngIf="form.submitted && form.controls['calificacion'].invalid">
+            Este campo es requerido y solo admite valores entre 0 y 10
+        </p>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Nombre del profesor</mat-label>
+            <input name="nombre_profesor" 
+                    matInput 
+                    autocomplete="off" 
+                    [(ngModel)]="curso.nombre_profesor" 
+                    required>
+        </mat-form-field>
+        <br>
+        <p class="error" *ngIf="form.submitted && form.controls['nombre_profesor'].invalid">
+            Este campo es requerido
+        </p>
+        <br>
+        <button mat-raised-button 
+                color="accent"
+                >
+                Guardar
+        </button>
+        <button *ngIf="id" mat-raised-button color="warn" (click)="eliminarCurso()" type="button">Eliminar</button>
+    </form>
+</div>
