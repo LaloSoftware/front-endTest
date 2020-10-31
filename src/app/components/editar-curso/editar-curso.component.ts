@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ICurso } from 'src/app/models/curso.model';
 import { CursosService } from 'src/app/services/cursos.service';
 import { ActivatedRoute, Router } from '@angular/router'
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-editar-curso',
@@ -19,13 +20,20 @@ export class EditarCursoComponent implements OnInit {
   }
   constructor(private cursosS: CursosService,
               private activatedRouter: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.obtenerParametros();
     if(this.id){
       this.cargarDatos();
     }
+  }
+
+  private openSnackBar(message: string) {
+    this._snackBar.open(message, 'Cerrar', {
+      duration: 2000,
+    });
   }
 
   private cargarDatos(){
@@ -36,7 +44,7 @@ export class EditarCursoComponent implements OnInit {
           ...JSON.parse(JSON.stringify(data.payload.data()))
         }
       }, err=>{
-        console.log(err);
+        this.openSnackBar('Ha ocurrido un error')
       }
     );
   }
@@ -47,6 +55,8 @@ export class EditarCursoComponent implements OnInit {
         if(parametros['id']){
           this.id = parametros['id'];
         }
+      }, err=> {
+        this.openSnackBar('Ha ocurrido un error');
       }
     );
   }
@@ -64,22 +74,22 @@ export class EditarCursoComponent implements OnInit {
 
   crearCurso(form: NgForm){
     this.cursosS.crearCurso(form.value).then(()=>{
-      console.log('Guardado');
+      this.openSnackBar('Curso guardado')
       this.router.navigateByUrl('/cursos')
     }).catch(err => {
-      console.log('error');
+      this.openSnackBar('Problemas al guardar, intentelo más tarde');
     });
   }
 
   editarCurso(){
     this.cursosS.editarCurso(this.id, this.curso).then(
       success => {
-        console.log('registrado');
+        this.openSnackBar('Cambios guardado')
         this.router.navigateByUrl('/cursos')
       }
     ).catch(
       err => {
-        console.log(err);
+        this.openSnackBar('Problemas al guardar')
       }
     );
   }
@@ -88,12 +98,12 @@ export class EditarCursoComponent implements OnInit {
     if(this.id){
       this.cursosS.eliminarCurso(this.id).then(
         success => {
-          console.log('eliminado');
+          this.openSnackBar('Curso eliminado')
           this.router.navigateByUrl('/cursos')
         }
       ).catch(
         err => {
-          console.log(err);
+          this.openSnackBar('Problemas al eliminar')
         }
       );
     }
