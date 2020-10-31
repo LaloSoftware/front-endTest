@@ -1,27 +1,12 @@
-# Test
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
 
-## Development server
+## Test de prubeba de Front-end Developer
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+SPA de una aplicación que ejemplifica las actividades de un CRUD (create, read, update, delete).
+Consta de una página de cursos en los cuales se muestran todos los cursos registrados en Firebase y una página para editar, registrar y eliminar dichos cursos
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Uso de este demo
+- Por defecto la aplicación te muestra la página de 
+- Para acceder al formulario de edición de un curso solo necesita hacer click sobre el en la página de cursos
+- Para generar un curso nuevo basta con dirigirse a la parte superior del curso y hacer click en el botón del menú titulado 'Nuevo curso' y llenar el formulario, una vez esté completo puede precionar el botón de guardar
+- Para eliminar un curso simplemente haga click sobre el y aparecerá abajo del formulario un botón titulado 'Eliminar'
